@@ -1395,6 +1395,28 @@ int playCouncil_Room(struct gameState *state, int handPos)
     drawCard(currentPlayer, state);
   }
 
+
+ //+1 Buy
+  state->numBuys++;
+
+  //Each other player draws a card
+  for (i = 0; i < state->numPlayers; i++)
+  {
+    if ( i != currentPlayer ) // bug fixed *ORIGINAL CODE*
+    //if ( i == currentPlayer ) //*BUG INTRODUCED* - Wrong logical operator
+    {
+      drawCard(i, state);
+    }
+  }
+
+  //put played card in played card pile
+  discardCard(handPos, currentPlayer, state, 0);
+
+  return 0;
+}
+
+
+
   //Bug 4: Great Hall
   int playGreat_Hall(struct gameState *state, int handPos)
   {
@@ -1426,26 +1448,6 @@ int playCouncil_Room(struct gameState *state, int handPos)
     discardCard(handPos, currentPlayer, state, 0);
     return 0;
   }
-
-
-  //+1 Buy
-  state->numBuys++;
-
-  //Each other player draws a card
-  for (i = 0; i < state->numPlayers; i++)
-  {
-    if ( i != currentPlayer ) // bug fixed *ORIGINAL CODE*
-    //if ( i == currentPlayer ) //*BUG INTRODUCED* - Wrong logical operator
-    {
-      drawCard(i, state);
-    }
-  }
-
-  //put played card in played card pile
-  discardCard(handPos, currentPlayer, state, 0);
-
-  return 0;
-}
 
 
 //end of dominion.c
