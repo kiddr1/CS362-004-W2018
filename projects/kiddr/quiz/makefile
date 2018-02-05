@@ -1,7 +1,7 @@
 
 testme: 
 
-	gcc -Wall -o testme testme.c 
+	gcc -Wall -o testme -g testme.c 
 
 
 clean:
