@@ -1364,6 +1364,7 @@ int playAdventurer(struct gameState *state)
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+   
     //if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) // Bug fixed *ORIGINAL CODE*
     if (cardDrawn == copper || cardDrawn == gold) //*BUG* - Silver deleted
       drawntreasure++;
@@ -1402,8 +1403,8 @@ int playCouncil_Room(struct gameState *state, int handPos)
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++)
   {
-    if ( i != currentPlayer ) // bug fixed *ORIGINAL CODE*
-    //if ( i == currentPlayer ) //*BUG INTRODUCED* - Wrong logical operator
+    //if ( i != currentPlayer ) // bug fixed *ORIGINAL CODE*
+    if ( i == currentPlayer ) //*BUG* - Wrong logical operator
     {
       drawCard(i, state);
     }
@@ -1426,8 +1427,8 @@ int playCouncil_Room(struct gameState *state, int handPos)
     drawCard(currentPlayer, state);
 
     //+1 Actions
-    state->numActions++; //BUG FIXED *ORIGINAL CODE*
-    //state->numBuys++; //*BUG INTRODUCED* - increment wrong variable
+    //state->numActions++; //BUG FIXED *ORIGINAL CODE*
+    state->numBuys++; //*BUG* - increment wrong variable
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
