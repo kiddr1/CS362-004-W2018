@@ -1,5 +1,5 @@
 /* Riam Sangdoung
-* CS 362 W 2018: Assignment 3 - cardtest3.c
+* CS 362 W 2018: Assignment 3 - cardtest4.c
 * Village
 */
 
