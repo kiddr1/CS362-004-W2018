@@ -1,6 +1,6 @@
-/*
- * File: randomtestcard1.c
- * Description: A random test generator for the smithy card.
+/* Riam Sangdoung
+ * randomtestcard1.c
+ * Smithy Card - random test generator
  */
 
 #include "dominion.h"
@@ -29,10 +29,9 @@ int main () {
 
    srand(time(NULL));
 
-
    for (i = 0; i < 123456; i++) {
 
-      //Randomly intialize the game state. Then make sure the needed variables are sane.
+// Randomly intialized the "sane" game state
       initializeGame(numPlayers, allowedCards, seed, &g);
 
       deckSize = rand() % (MAX_DECK + 1);
@@ -42,24 +41,22 @@ int main () {
       g.handCount[0] = handSize;
       handPos = g.hand[currPlayer][g.handCount[currPlayer]-1];
 
-
-      //Note the current state before playing the card
+// Current state before playing card
       startDeck = g.deckCount[0];
       startHand = g.handCount[0];
       startDiscard = g.playedCardCount;
 
-
-      //Play the card
+// Play card
       cardEffect(smithy, choice1, choice2, choice3, &g, handPos, &bonus);
 
 
-      //Note the state after playing the card
+// State after playing the card
       currDeck = g.deckCount[0];
       currHand = g.handCount[0];
       currDiscard = g.playedCardCount;
 
 
-      //NOW... the moment of reckoning... the tests
+// Pass or Fail determination tests
       passedAllTestsFlag = 1;
 
       printf("Testing Smithy card...\n");
@@ -99,14 +96,11 @@ int main () {
 
    }
 
-
    printf("Smithy tests summary:\n");
    printf("\tPASSED: %d\n", numTestsPassed);
    printf("\tFAILED (deck): %d\n", failedDeckCount);
    printf("\tFAILED (hand): %d\n", failedHandCount);
    printf("\tFAILED (discard): %d\n\n", failedDiscardCount);
-
-
 
    return 0;
 

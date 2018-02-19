@@ -106,7 +106,7 @@ randomtestcard2o.out: randomtestcard2o
 	gcov -b dominion >> $@
 	@cat dominion.c.gcov >> $@
 
-randomtests: randomtestadventurer randomtestcard1 randomtestcard2 randomtestadventurer.out randomtestcard1.out randomtestcard2.out
+randomtests: randomtestadventurer randomtestcard1 randomtestcard2 randomtestadventurer.out randomtestcard1.out randomtestcard2.out randomtestcard2o.out
 
 	
 all: playdom player testDrawCard testBuyCard badTestDrawCard

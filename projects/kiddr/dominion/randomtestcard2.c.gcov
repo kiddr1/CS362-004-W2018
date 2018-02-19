@@ -3,32 +3,32 @@
         -:    0:Data:randomtestcard2.gcda
         -:    0:Runs:1
         -:    0:Programs:1
-        -:    1://randomtestcard2.c modified to get 100% coverage
-        -:    2:
-        -:    3:
-        -:    4:#include "dominion.h"
-        -:    5:#include "dominion_helpers.h"
-        -:    6:#include "rngs.h"
-        -:    7:#include <stdio.h>
-        -:    8:#include <stdlib.h>
-        -:    9:#include <string.h>
-        -:   10:#include <time.h>
-        -:   11:#include <assert.h>
-        -:   12:
+        -:    1:/* Riam Sangdoung
+        -:    2: * Great Hall: randomtestcard2.c improved to obtain 100% statement and branch coverage
+        -:    3: */
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include "rngs.h"
+        -:    8:#include <stdio.h>
+        -:    9:#include <stdlib.h>
+        -:   10:#include <string.h>
+        -:   11:#include <time.h>
+        -:   12:#include <assert.h>
         -:   13:
+        -:   14:
 function main called 1 returned 100% blocks executed 100%
-        1:   14:int main () {
-        -:   15:
-        -:   16:   struct gameState g;
-        -:   17:
-        1:   18:   int seed = 1000;
-        1:   19:   int numTestsPassed = 0, passedAllTestsFlag = 0;
-        1:   20:   int numPlayers = 2, currPlayer = 0;
-        -:   21:   int deckSize, handSize, startHand, currHand, startNumActions, currNumActions;
-        1:   22:   int failedHandCount = 0, failedActionsCount = 0;
-        1:   23:   int i = 0;
-        1:   24:   int choice1 = 0, choice2 = 0, choice3 = 0, handPos = 0, bonus = 0;
-        -:   25:
+        1:   15:int main () {
+        -:   16:
+        -:   17:   struct gameState g;
+        -:   18:
+        1:   19:   int seed = 1000;
+        1:   20:   int numTestsPassed = 0, passedAllTestsFlag = 0;
+        1:   21:   int numPlayers = 2, currPlayer = 0;
+        -:   22:   int deckSize, handSize, startHand, currHand, startNumActions, currNumActions;
+        1:   23:   int failedHandCount = 0, failedActionsCount = 0;
+        1:   24:   int i = 0;
+        1:   25:   int choice1 = 0, choice2 = 0, choice3 = 0, handPos = 0, bonus = 0;
         1:   26:   int allowedCards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
         -:   27:
         1:   28:   srand(time(NULL));
@@ -40,7 +40,7 @@ call    1 returned 100%
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:   32:
-        -:   33:      //randomly intialize the game state. then make sure the needed variables are sane.
+        -:   33:// Randomly intialized the "sane" game state
    123456:   34:      initializeGame(numPlayers, allowedCards, seed, &g);
 call    0 returned 100%
         -:   35:
@@ -56,82 +56,79 @@ call    0 returned 100%
    123456:   42:      handPos = g.hand[currPlayer][g.handCount[currPlayer]-1];
         -:   43:
         -:   44:
-        -:   45:      //Note the current state before playing the card
+        -:   45:// Current state before playing the card
    123456:   46:      startHand = g.handCount[0];
    123456:   47:      startNumActions = g.numActions;
         -:   48:
         -:   49:
-        -:   50:      //Play the card
+        -:   50://Play card
    123456:   51:      cardEffect(great_hall, choice1, choice2, choice3, &g, handPos, &bonus);
 call    0 returned 100%
         -:   52:
         -:   53:
-        -:   54:      //Note the state after playing the card
+        -:   54:// State after playing card
    123456:   55:      currHand = g.handCount[0];
    123456:   56:      currNumActions = g.numActions;
    123456:   57:      if (rand() % 100 == 1) {	//Test for an intentionally bad condition
 call    0 returned 100%
 branch  1 taken 1% (fallthrough)
 branch  2 taken 99%
-     1194:   58:	 currNumActions += 1;
+     1247:   58:	 currNumActions += 1;
         -:   59:      }
         -:   60:
-        -:   61:
-        -:   62:      //NOW... the moment of reckoning... the tests
-   123456:   63:      passedAllTestsFlag = 1;
-        -:   64:
-   123456:   65:      printf("Testing Great Hall card...\n");
+        -:   61:// Pass or Fail determination tests
+   123456:   62:      passedAllTestsFlag = 1;
+        -:   63:
+   123456:   64:      printf("Testing Great Hall card...\n");
 call    0 returned 100%
-        -:   66:
-   123456:   67:      if (currHand != startHand) {
+        -:   65:
+   123456:   66:      if (currHand != startHand) {
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
-     1704:   68:	 printf("\tCards drawn - FAIL\n");
+     1636:   67:	 printf("\tCards drawn - FAIL\n");
 call    0 returned 100%
-     1704:   69:	 failedHandCount++;
-     1704:   70:	 passedAllTestsFlag = 0;
-        -:   71:      }
-        -:   72:      else {
-   121752:   73:	 printf("\tCards drawn - PASS\n");
+     1636:   68:	 failedHandCount++;
+     1636:   69:	 passedAllTestsFlag = 0;
+        -:   70:      }
+        -:   71:      else {
+   121820:   72:	 printf("\tCards drawn - PASS\n");
 call    0 returned 100%
-        -:   74:      }
-        -:   75:
-   123456:   76:      if (currNumActions != startNumActions + 1) {
+        -:   73:      }
+        -:   74:
+   123456:   75:      if (currNumActions != startNumActions + 1) {
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
-     1194:   77:	 printf("\tActions - FAIL\n");
+     1247:   76:	 printf("\tActions - FAIL\n");
 call    0 returned 100%
-     1194:   78:	 failedActionsCount++;
-     1194:   79:	 passedAllTestsFlag = 0;
-        -:   80:      }
-        -:   81:      else {
-   122262:   82:	 printf("\tActions - PASS\n");
+     1247:   77:	 failedActionsCount++;
+     1247:   78:	 passedAllTestsFlag = 0;
+        -:   79:      }
+        -:   80:      else {
+   122209:   81:	 printf("\tActions - PASS\n");
 call    0 returned 100%
-        -:   83:      }
+        -:   82:      }
+        -:   83:
         -:   84:
-        -:   85:
-   123456:   86:      if (passedAllTestsFlag == 1) {
+   123456:   85:      if (passedAllTestsFlag == 1) {
 branch  0 taken 98% (fallthrough)
 branch  1 taken 2%
-   120578:   87:	 printf("All tests passed!!\n");
+   120588:   86:	 printf("All tests passed!!\n");
 call    0 returned 100%
-   120578:   88:	 numTestsPassed++;
-        -:   89:      }
-        -:   90:
-        -:   91:   }
+   120588:   87:	 numTestsPassed++;
+        -:   88:      }
+        -:   89:
+        -:   90:   }
+        -:   91:
         -:   92:
-        -:   93:
-        1:   94:   printf("Great Hall tests summary:\n");
+        1:   93:   printf("Great Hall tests summary:\n");
 call    0 returned 100%
-        1:   95:   printf("\tPASSED: %d\n", numTestsPassed);
+        1:   94:   printf("\tPASSED: %d\n", numTestsPassed);
 call    0 returned 100%
-        1:   96:   printf("\tFAILED (hand): %d\n", failedHandCount);
+        1:   95:   printf("\tFAILED (hand): %d\n", failedHandCount);
 call    0 returned 100%
-        1:   97:   printf("\tFAILED (actions): %d\n\n", failedActionsCount);
+        1:   96:   printf("\tFAILED (actions): %d\n\n", failedActionsCount);
 call    0 returned 100%
-        -:   98:
+        -:   97:
+        1:   98:   return 0;
         -:   99:
-        -:  100:
-        1:  101:   return 0;
-        -:  102:
-        -:  103:}
+        -:  100:}

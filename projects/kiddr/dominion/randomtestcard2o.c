@@ -1,6 +1,6 @@
-/* 
- * File: randomtestcard2.c
- * Description: A random test generator for the great hall card. Original
+/* Riam Sangdoung
+ * randomtestcard2.c
+ * Original code: Great Hall card random test generator
  */
 
 #include "dominion.h"
@@ -11,7 +11,6 @@
 #include <string.h>
 #include <time.h>
 #include <assert.h>
-
 
 int main () {
 
@@ -24,7 +23,6 @@ int main () {
    int failedHandCount = 0, failedActionsCount = 0;
    int i = 0;
    int choice1 = 0, choice2 = 0, choice3 = 0, handPos = 0, bonus = 0;
-
    int allowedCards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
    srand(time(NULL));
@@ -32,7 +30,7 @@ int main () {
 
    for (i = 0; i < 123456; i++) {
 
-      //randomly intialize the game state. then make sure the needed variables are sane.
+// Randomly intialized the "sane" game state
       initializeGame(numPlayers, allowedCards, seed, &g);
 
       deckSize = rand() % (MAX_DECK + 1);
@@ -43,22 +41,18 @@ int main () {
       g.numActions = rand() % 10;
       handPos = g.hand[currPlayer][g.handCount[currPlayer]-1];
 
-
-      //Note the current state before playing the card
+// Current state before playing card
       startHand = g.handCount[0];
       startNumActions = g.numActions;
 
-
-      //Play the card
+// Play card
       cardEffect(great_hall, choice1, choice2, choice3, &g, handPos, &bonus);
 
-
-      //Note the state after playing the card
+// State after playing the card
       currHand = g.handCount[0];
       currNumActions = g.numActions;
 
-
-      //NOW... the moment of reckoning... the tests
+// Pass or Fail determination tests
       passedAllTestsFlag = 1;
 
       printf("Testing Great Hall card...\n");
@@ -89,13 +83,10 @@ int main () {
 
    }
 
-
    printf("Great Hall tests summary:\n");
    printf("\tPASSED: %d\n", numTestsPassed);
    printf("\tFAILED (hand): %d\n", failedHandCount);
    printf("\tFAILED (actions): %d\n\n", failedActionsCount);
-
-
 
    return 0;
 
