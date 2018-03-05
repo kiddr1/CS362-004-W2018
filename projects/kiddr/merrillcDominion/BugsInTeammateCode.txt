@@ -1,0 +1,107 @@
+Bug Report #1
+=============
+
+Title: Player is allowed to draw 4 cards when playing the Smithy card.
+
+Class:  Minor bug
+
+Date:  4 March 2018
+Reported By: Riam Sangdoung
+Email:  kiddr@oregonstate.edu
+
+Product:  Christopher Merrill (ONID ID: merrillc) dominion.c code Assignment 2 CS 362
+
+Platform: OSU's Linux server (flip server)
+Linux flip3.engr.oregonstate.edu 3.10.0-693.11.1.el7.x86_64 #1 SMP Mon Dec 4 23:52:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
+
+Is it reproducible?  Yes
+
+Description:
+--------------------------
+Smithy card allowed players to draw 4 cards instead of 3 cards.
+
+Steps to produce/reproduce:
+--------------------------------------
+Draw cards.
+Play the Smithy card
+Start drawing from your deck.
+
+Expected results:
+---------------------------
+Draw 3 or less cards
+
+Actual results:
+---------------------------
+Drew 4 cards
+
+
+Workarounds:
+---------------------------
+None
+
+Attachments:
+---------------------------
+See screenshots (section A) in Assignment-5.pdf file for more information
+
+Other information:
+---------------------------
+Examine the rules and make sure that you just change for loop before discardCard. It should be changed from 4 to 3 so that the player is not allowed to draw 4 cards.
+
+The noverse Bug Reporting Template was used to write up the Bug reports:
+http://www.noverse.com/images/noverse-bug-reporting-template.txt
+
+Bug Report #2
+=============
+
+Title:  Village card error in hand count and discard.
+
+Class:  Minor bug
+
+Date:  4 March 2018
+Reported By: Riam Sangdoung
+Email:  kiddr@oregonstate.edu
+
+Product:  Christopher Merrill (ONID ID: merrillc) dominion.c code Assignment 2 CS 362
+
+Platform: OSU's Linux server (flip server)
+Linux flip3.engr.oregonstate.edu 3.10.0-693.11.1.el7.x86_64 #1 SMP Mon Dec 4 23:52:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
+
+Is it reproducible?
+Yes
+
+
+
+Description:
+-------------------
+The hand count failed (was 2 should have been 1) and discard also failed.  The error is seen in the (screenshot 4) commented out discardCard code.  This is how it ended up with 2 cards and kept the cards that should have been discarded.
+
+Steps to produce/reproduce:
+---------------------------------------
+Draw cards
+Play Village card
+Discard Village card if necessary
+
+Expected results:
+---------------------------
+Once the Village card is drawn then then it is able to be discarded.
+
+Actual results:
+---------------------------
+Village card was played and was not allowed to be discarded.
+
+Workarounds:
+---------------------------
+None
+
+Attachments:
+---------------------------
+See screenshots (section A) in Assignment-5.pdf file for more information
+
+Other information:
+---------------------------
+Check the discardCard code in the playVillage code and uncomment that line of code. This should fix the problem.
+
+The noverse Bug Reporting Template was used to write up the Bug reports:
+http://www.noverse.com/images/noverse-bug-reporting-template.txt
