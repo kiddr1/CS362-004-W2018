@@ -1336,8 +1336,9 @@ int playSmithy(struct gameState *state, int handPos)
   int currentPlayer = whoseTurn(state);
 
   //+3 Cards
-  //for (i = 0; i < 3; i++) //*ORIGINAL CODE*
-  for (i = 0; i <= 3; i++) //*BUG* - incorrect logical operator; assignment 4 randomcardtest2.c
+  for (i = 0; i < 3; i++) //*FIXED BUG CODE*
+  
+//for (i = 0; i <= 3; i++) //*BUG* - incorrect logical operator
   {
     drawCard(currentPlayer, state);
   }
@@ -1365,8 +1366,9 @@ int playAdventurer(struct gameState *state)
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 
-    //if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) // Bug fixed *ORIGINAL CODE*
-    if (cardDrawn == copper || cardDrawn == gold) //*BUG* - Silver deleted; assignment 4 randomtestadventurer.c
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) //*FIXED BUG CODE*
+    
+//if (cardDrawn == copper || cardDrawn == gold) //*BUG* - Silver deleted
       drawntreasure++;
     else
     {
